@@ -1,5 +1,7 @@
 #pragma once
 
+#include "lve_frame_info.hpp"
+#include "lve_buffer.hpp"
 #include "lve_device.hpp"
 #include<memory>
 #include <vector>
@@ -52,13 +54,11 @@ namespace lve{
             void createIndexBuffers(const std::vector<uint32_t> &indices);
 
             LveDevice &lveDevice;
-            VkBuffer vertexBuffer;
-            VkDeviceMemory vertexBufferMemory;
+            std::unique_ptr<LveBuffer> vertexBuffer;
             uint32_t vertexCount;
 
             bool hasIndexBuffer = false;
-            VkBuffer indexBuffer;
-            VkDeviceMemory indexBufferMemory;
+            std::unique_ptr<LveBuffer> indexBuffer;
             uint32_t indexCount;
     };
 } // namespace lve
