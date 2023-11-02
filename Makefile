@@ -1,4 +1,6 @@
-CFLAGS = -std=c++17 -I. -I$(VULKAN_SDK_PATH)/include
+include .env
+
+CFLAGS = -std=c++17 -I. -I$(VULKAN_SDK_PATH)/include -I$(TINYOBJ_PATH)
 LDFLAGS = -L$(VULKAN_SDK_PATH)/lib `pkg-config --static --libs glfw3` -lvulkan
 
 a.out: *.cpp *.hpp
