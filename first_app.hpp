@@ -5,6 +5,7 @@
 #include "lve_pipeline.hpp"
 #include "lve_game_object.hpp"
 #include "lve_renderer.hpp"
+#include "lve_descriptors.hpp"
 
 #include <memory>
 #include <vector>
@@ -27,9 +28,12 @@ namespace lve{
         private:
             void loadGameObjects();
 
-            LveWindow lveWindow{WIDTH, HEIGHT,  "hello"};
+            LveWindow lveWindow{WIDTH, HEIGHT,  "App Vulkan"};
             LveDevice lveDevice{lveWindow};
             LveRenderer lveRenderer{lveWindow, lveDevice};
+
+            // a ordem de declaração importa!
+            std::unique_ptr<LveDescriptorPool> globalPool{};
             std::vector<LveGameObject> gameObjects;
 
     };
