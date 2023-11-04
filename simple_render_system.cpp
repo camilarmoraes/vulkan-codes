@@ -14,7 +14,6 @@
 namespace lve {
 
 struct SimplePushConstantData {
-  //glm::mat4 transform{1.f};
   glm::mat4 modelMatrix{1.f};
   glm::mat4 normalMatrix{1.f};
 };
@@ -64,7 +63,7 @@ void SimpleRenderSystem::createPipeline(VkRenderPass renderPass) {
       pipelineConfig);
 }
 
-void SimpleRenderSystem::renderGameObjects(FrameInfo &frameInfo, std::vector<LveGameObject>&gameObjects) {
+void SimpleRenderSystem::renderGameObjects(FrameInfo& frameInfo) {
   lvePipeline->bind(frameInfo.commandBuffer);
 
   vkCmdBindDescriptorSets(
@@ -77,10 +76,9 @@ void SimpleRenderSystem::renderGameObjects(FrameInfo &frameInfo, std::vector<Lve
     0,
     nullptr);
 
-  for (auto& obj : gameObjects) {
-    // obj.transform.rotation.y = glm::mod(obj.transform.rotation.y + 0.0001f, glm::two_pi<float>());
-    // obj.transform.rotation.x = glm::mod(obj.transform.rotation.x + 0.0005f, glm::two_pi<float>());
-
+  for (auto& kv : frameInfo.gameObjects) {
+    auto& obj = kv.second;
+    if (obj.model == nullptr) continue;
     SimplePushConstantData push{};
     push.modelMatrix = obj.transform.mat4();
     push.normalMatrix = obj.transform.normalMatrix();

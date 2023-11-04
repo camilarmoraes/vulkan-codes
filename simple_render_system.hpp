@@ -4,6 +4,7 @@
 #include "lve_device.hpp"
 #include "lve_pipeline.hpp"
 #include "lve_game_object.hpp"
+#include "lve_frame_info.hpp"
 
 #include <memory>
 #include <vector>
@@ -22,7 +23,7 @@ namespace lve{
             SimpleRenderSystem(const LveWindow &) = delete;
             SimpleRenderSystem &operator=(const LveWindow &) = delete;
 
-            void renderGameObjects(FrameInfo &frameInfo, std::vector<LveGameObject> &gameObjects);
+            void renderGameObjects(FrameInfo &frameInfo);
         private:
             void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
             void createPipeline(VkRenderPass renderPass);
