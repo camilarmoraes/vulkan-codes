@@ -4,3 +4,5 @@ a.out
 .env
 .vscode/settings.json
 .vscode/settings.json
+shaders/simple_shader.vert.spv
+shaders/simple_shader.frag.spv
