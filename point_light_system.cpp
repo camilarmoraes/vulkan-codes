@@ -67,11 +67,7 @@ void PointLightSystem::createPipeline(VkRenderPass renderPass) {
 }
 
 void PointLightSystem::update(FrameInfo& frameInfo, GlobalUbo &ubo){
-  auto rotateLight = glm::rotate(
-        glm::mat4(1.f),
-        frameInfo.frameTime,
-        {0.f, -1.f, 0.f});
-
+  auto rotateLight = glm::rotate(glm::mat4(1.f),frameInfo.frameTime,{0.f, -1.f, 0.f});
   int lightIndex = 0;
   for(auto& kv: frameInfo.gameObjects){
     auto& obj = kv.second;
@@ -113,8 +109,7 @@ void PointLightSystem::render(FrameInfo& frameInfo) {
     push.radius = obj.transform.scale.x;
 
     vkCmdPushConstants(frameInfo.commandBuffer, pipelineLayout,VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT,0, sizeof(PointLightPushConstants),&push);
-  }
-  vkCmdDraw(frameInfo.commandBuffer, 6, 1, 0, 0);
+    vkCmdDraw(frameInfo.commandBuffer, 6, 1, 0, 0);
+  } 
 }
-
 }  // namespace lve
