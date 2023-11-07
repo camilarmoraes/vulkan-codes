@@ -1,0 +1,12 @@
+a.out
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+.env
+.vscode/settings.json
+.vscode/settings.json
+shaders/simple_shader.vert.spv
+shaders/simple_shader.frag.spv
+shaders/simple_shader.vert.spv
+shaders/simple_shader.frag.spv
+shaders/point_light.vert.spv
+shaders/point_light.frag.spv
