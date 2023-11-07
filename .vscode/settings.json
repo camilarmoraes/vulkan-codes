@@ -53,6 +53,7 @@
         "ctime": "cpp",
         "ratio": "cpp",
         "sstream": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "map": "cpp"
     }
 }
