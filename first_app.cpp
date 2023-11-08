@@ -6,6 +6,9 @@
 #include "simple_render_system.hpp"
 #include "point_light_system.hpp"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 // libs
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -121,13 +124,23 @@ void FirstApp::run() {
 }
 
 void FirstApp::loadGameObjects() {
-  std::shared_ptr<LveModel> lveModel =
-      LveModel::createModelFromFile(lveDevice, "models/flat_vase.obj");
-  auto flatVase = LveGameObject::createGameObject();
-  flatVase.model = lveModel;
-  flatVase.transform.translation = {-.5f, .5f, 0.f};
-  flatVase.transform.scale = {3.f, 1.5f, 3.f};
-  gameObjects.emplace(flatVase.getId(), std::move(flatVase));
+  
+  // std::shared_ptr<LveModel> lveModel =
+  //     LveModel::createModelFromFile(lveDevice, "models/flat_vase.obj");
+  // auto flatVase = LveGameObject::createGameObject();
+  // flatVase.model = lveModel;
+  // flatVase.transform.translation = {-.5f, .5f, 0.f};
+  // flatVase.transform.scale = {3.f, 1.5f, 3.f};
+  // gameObjects.emplace(flatVase.getId(), std::move(flatVase));
+
+    std::shared_ptr<LveModel> lveModel =
+      LveModel::createModelFromFile(lveDevice, "models/Alien Animal.obj");
+  auto alien = LveGameObject::createGameObject();
+  alien.model = lveModel;
+  alien.transform.rotation = {600.f, 0.f, 0.f};
+  alien.transform.translation = {-.5f, .5f, 0.f};
+  alien.transform.scale = {0.06f, 0.08f, 0.06f};
+  gameObjects.emplace(alien.getId(), std::move(alien));
 
   lveModel = LveModel::createModelFromFile(lveDevice, "models/blank_body.obj");
   auto blankBody = LveGameObject::createGameObject();
