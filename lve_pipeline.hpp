@@ -7,6 +7,7 @@
 namespace lve{
 
     struct PipelineConfigInfo {
+        PipelineConfigInfo() = default;
         PipelineConfigInfo(const PipelineConfigInfo&) = delete;
         PipelineConfigInfo& operator = (const PipelineConfigInfo&) = delete;
 
@@ -43,6 +44,7 @@ namespace lve{
             
             // static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
             static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo);
+            static void enableAlphaBlending(PipelineConfigInfo& configInfo);
 
         private:
             static std::vector<char> readFile(const std::string& filepath);
