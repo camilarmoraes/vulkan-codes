@@ -126,11 +126,13 @@ void FirstApp::loadGameObjects() {
   flatVase.transform.scale = {3.f, 1.5f, 3.f};
   gameObjects.emplace(flatVase.getId(), std::move(flatVase));
 
-  lveModel = LveModel::createModelFromFile(lveDevice, "models/smooth_vase.obj");
+  lveModel = LveModel::createModelFromFile(lveDevice, "models/blank_body.obj");
   auto smoothVase = LveGameObject::createGameObject();
   smoothVase.model = lveModel;
+  smoothVase.transform.rotation = {600.f, 0.f, 0.f};
   smoothVase.transform.translation = {.5f, .5f, 0.f};
-  smoothVase.transform.scale = {3.f, 1.5f, 3.f};
+  smoothVase.transform.scale = {0.3f, 0.5f, 0.3f};
+  
   gameObjects.emplace(smoothVase.getId(), std::move(smoothVase));
 
   lveModel = LveModel::createModelFromFile(lveDevice, "models/quad.obj");
