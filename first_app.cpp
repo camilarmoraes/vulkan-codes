@@ -107,8 +107,11 @@ void FirstApp::run() {
 
       // render
       lveRenderer.beginSwapChainRenderPass(commandBuffer);
+
+      // a ordem de renderizacao aqui importa !!
       simpleRenderSystem.renderGameObjects(frameInfo);
       pointLightSystem.render(frameInfo);
+      
       lveRenderer.endSwapChainRenderPass(commandBuffer);
       lveRenderer.endFrame();
     }
@@ -127,13 +130,12 @@ void FirstApp::loadGameObjects() {
   gameObjects.emplace(flatVase.getId(), std::move(flatVase));
 
   lveModel = LveModel::createModelFromFile(lveDevice, "models/blank_body.obj");
-  auto smoothVase = LveGameObject::createGameObject();
-  smoothVase.model = lveModel;
-  smoothVase.transform.rotation = {600.f, 0.f, 0.f};
-  smoothVase.transform.translation = {.5f, .5f, 0.f};
-  smoothVase.transform.scale = {0.3f, 0.5f, 0.3f};
-  
-  gameObjects.emplace(smoothVase.getId(), std::move(smoothVase));
+  auto blankBody = LveGameObject::createGameObject();
+  blankBody.model = lveModel;
+  blankBody.transform.rotation = {600.f, 0.f, 0.f};
+  blankBody.transform.translation = {.5f, .5f, 0.f};
+  blankBody.transform.scale = {0.3f, 0.5f, 0.3f};
+  gameObjects.emplace(blankBody.getId(), std::move(blankBody));
 
   lveModel = LveModel::createModelFromFile(lveDevice, "models/quad.obj");
   auto floor = LveGameObject::createGameObject();
